@@ -6,7 +6,25 @@
 # @File    : test01.py
 # @Software: PyCharm
 
-from urllib.request import urlopen
+from urllib.request import urlopen, HTTPError
+from bs4 import BeautifulSoup
+try:
+    html = urlopen("http://pythonscraping.com/pages/page1.html")
+except HTTPError as e:
+    print(e)
+else:
+    bsObj = BeautifulSoup(html.read())
+    print(bsObj.h1)
 
-html = urlopen("http://pythonscraping.com/pages/page1.html")
-print(html.read())
+try:
+    html = urlopen("http://pythonscraping.com/pages/page1.html")
+    bsObj = BeautifulSoup(html.read())
+    badObj = bsObj.nonExistenTag.anotherTag
+except AttributeError as e:
+    print(e)
+else:
+    if badObj == None:
+        print('tag was not found')
+    else:
+        print(badObj)
+
