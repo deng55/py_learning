@@ -1,15 +1,15 @@
 # git
 
-* git add readme.txt
-* git commit -m "comment"
-* git diff readme.txt
+* `git add readme.txt` `git add -A`
+* `git commit -m "comment"`
+* `git diff readme.txt`
 
 ---
 
-* git log  /  git log --pretty=oneline 
-* git reset --hard HEAD^ 回退到上一个版本  同理 HEAD^^ 上上个版本
-* 在当前窗口没有关闭的情况下  git reset --hard 87cd3c 可以回到最新版本
-* 如果忘记了commit id 可以使用 git reflog 查看之前提交的记录
+* `git log`  /  `git log --pretty=oneline `
+* `git reset --hard HEAD^` 回退到上一个版本  同理 `HEAD^^` 上上个版本
+* 在当前窗口没有关闭的情况下  `git reset --hard 87cd3c` 可以回到最新版本
+* 如果忘记了commit id 可以使用 `git reflog` 查看之前提交的记录
 
 ---
 
@@ -23,11 +23,11 @@
 
 撤销更改  
 
-已编辑 git checkout -- fileName
+已编辑 `git checkout -- fileName`
 
- 如果已提交到stage  git reset HEAD fileName
+ 如果已提交到stage  `git reset HEAD fileName`
 
-如果已经commit  第一步 回退版本  git reset --hard xxx
+如果已经commit  第一步 回退版本  `git reset --hard xxx`
 
 创建ssh key  `ssh-keygen -t rsa -C "youremail@example.com"`
 
@@ -142,7 +142,6 @@ $ git tag -a v0.1 -m "version 0.1 released" 3628164
 
 ```
 $ git tag -s v0.2 -m "signed version 0.2 released" fec145a
-
 ```
 
 签名采用PGP签名，因此，必须首先安装gpg（GnuPG），如果没有找到gpg，或者没有gpg密钥对，就会报错：
@@ -151,9 +150,23 @@ $ git tag -s v0.2 -m "signed version 0.2 released" fec145a
 gpg: signing failed: secret key not available
 error: gpg failed to sign the data
 error: unable to sign the tag
-
 ```
 
 如果报错，请参考GnuPG帮助文档配置Key。
 
 用命令`git show <tagname>`可以看到PGP签名信息
+
+删除标签  `git tag -d v0.1`
+
+如果要推送某个标签到远程，使用命令`git push origin <tagname>`
+
+一次性推送全部尚未推送到远程的本地标签  `git push origin --tags`
+
+删除远程标签 1.先从本地删除 `git tag -d xx` 2.从远程删除 `git push origin :refs/tags/v0.9`
+
+`ssh-keygen -t rsa -C "[your_email@youremail.com](mailto:your_email@youremail.com)"`
+
+- 忽略某些文件时，需要编写`.gitignore`；
+- `.gitignore`文件本身要放到版本库里，并且可以对`.gitignore`做版本管理！
+
+`git config --global alias.st status` 为status设置别名
