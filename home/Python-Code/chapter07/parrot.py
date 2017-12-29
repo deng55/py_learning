@@ -12,10 +12,10 @@ message = input('tell me something, and I\'ll repeat it back to you:')
 print(message)
 
 height = input("please input you height")
+# 使用int来获取数值输入
 height = int(height)
 
-if height>= 36:
+if height >= 36:
     print('you are tall enough to ride')
 else:
     print('you can ride when you are a little older')
-
